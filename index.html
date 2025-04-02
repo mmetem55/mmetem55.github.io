@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Müzik Çalar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #musicButton {
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #musicButton:hover {
+            background-color: #45a049;
+        }
+        footer {
+            font-size: 12px;
+            color: gray;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Sitesi - Müzik Çalar</h1>
+    <button id="musicButton" onclick="toggleMusic()">Bassana hacı</button>
+
+    <footer>
+        by mmetem
+    </footer>
+
+    <audio id="music" preload="auto" style="display:none;">
+        <source src="https://github.com/KullanıcıAdın/username.github.io/raw/main/rahat.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let music = document.getElementById("music");
+        let button = document.getElementById("musicButton");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                button.textContent = "Müziği durdurmak için bas hacı";
+            } else {
+                music.pause();
+                music.currentTime = 0;
+                button.textContent = "Bassana hacı";
+            }
+        }
+    </script>
+</body>
+</html>
