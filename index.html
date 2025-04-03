@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profilim</title>
     <style>
-        /* Genel stil ayarları */
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            height: 100vh; /* Sayfa yüksekliği ekran kadar */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: black;
         }
 
-        /* Video Arka Plan */
+        /* Video Arka Planı */
         .video-bg {
             position: absolute;
             top: 0;
@@ -26,22 +25,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover; /* Videoyu tam ekran yapar */
-            z-index: -1; /* Video arka planda olacak */
+            z-index: -1; /* Video arka planda */
         }
 
         /* Profil Container */
         .profile-container {
             text-align: center;
             color: white;
-            z-index: 1; /* Profilin ön planda olmasını sağlar */
+            z-index: 1;
         }
 
         /* Profil Resmi */
         .profile-img {
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* Yuvarlak profil resmi */
-            border: 3px solid black; /* İnce siyah çerçeve */
+            border-radius: 50%;
+            border: 3px solid black;
             object-fit: cover;
             margin-bottom: 15px;
         }
