@@ -3,102 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mmetem | Linkler</title>
+    <title>Profilim</title>
     <style>
-        * {
+        /* Genel stil ayarları */
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            text-align: center;
-            color: white;
-        }
-        body {
-            background: black;
             font-family: Arial, sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
+            overflow: hidden; /* Sayfa dışı kaydırmayı engelle */
         }
+
+        /* Video arka planı */
         .video-bg {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: -1; /* Video arka planda olacak */
         }
-        .container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+
+        /* Profil resmi */
         .profile-img {
-    width: 150px;  /* Orta boyut */
-    height: 150px;  /* Orta boyut */
-    border-radius: 50%; /* Yuvarlak profil resmi */
-    border: 3px solid black; /* İnce siyah çerçeve */
-    margin-bottom: 15px;
-    object-fit: cover; /* Resmin boyutunu düzgün şekilde keser ve yuvarlak yapar */
-}
-        h1 {
-            font-size: 30px; /* Orta boyut */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Yuvarlak profil resmi */
+            border: 3px solid black; /* İnce siyah çerçeve */
+            object-fit: cover; /* Resmin boyutunu düzgün şekilde keser */
             margin-bottom: 15px;
-            margin-top: 10px;
-            color: red; /* Kullanıcı adı kırmızı */
         }
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
+
+        /* Profil kısmı */
+        .profile-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1; /* Profil kısmı ön planda */
+        }
+
+        /* Kullanıcı adı */
+        .username {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Sosyal medya ikonları */
+        .social-icons {
             margin-top: 20px;
         }
-        .links a {
-            width: 50px;
-            height: 50px;
+
+        .social-icons a {
+            margin: 0 15px;
         }
-        .links img {
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .links img:hover {
-            transform: scale(1.2);
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <!-- Video -->
+    <video class="video-bg" autoplay loop playsinline>
+        <source src="/storage/emulated/0/Download/audi s8.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-    <!-- Arka Plan Videosu -->
-    <video class="video-bg" autoplay loop playsinline muted="false">
-    <source src="audi_s8.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+    <!-- Profil -->
+    <div class="profile-container">
         <!-- Profil Resmi -->
-        <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
-        <!-- Kullanıcı Adı -->
-        <h1>@mmetem</h1>
+        <img class="profile-img" src="/storage/emulated/0/Download/behzatç.jpeg" alt="Profil Resmi">
 
-        <!-- Linkler (İkonlar) -->
-        <div class="links">
+        <!-- Kullanıcı Adı -->
+        <div class="username">mmetem</div>
+
+        <!-- Sosyal Medya İkonları -->
+        <div class="social-icons">
+            <!-- Instagram -->
             <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
-                <img src="instagram_icon.png" alt="Instagram">
+                <img src="/storage/emulated/0/Download/instagram icon.png" alt="Instagram">
             </a>
+
+            <!-- Steam -->
             <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
-                <img src="steam_icon.png" alt="Steam">
+                <img src="/storage/emulated/0/Download/steam icon.png" alt="Steam">
             </a>
+
+            <!-- Spotify -->
             <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=WK-s7ZC4TreY4UeMQrFm0g" target="_blank">
-                <img src="spotify_icon.png" alt="Spotify">
+                <img src="/storage/emulated/0/Download/spotify icon.png" alt="Spotify">
             </a>
+
+            <!-- GitHub -->
             <a href="https://github.com/mmetem55" target="_blank">
-                <img src="github_icon.png" alt="GitHub">
+                <img src="/storage/emulated/0/Download/github icon.png" alt="GitHub">
             </a>
         </div>
     </div>
-
 </body>
 </html>
