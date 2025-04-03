@@ -10,49 +10,50 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            overflow: hidden; /* Sayfa dışı kaydırmayı engelle */
+            overflow: hidden;
+            height: 100vh; /* Sayfa yüksekliği ekran kadar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
         }
 
-        /* Video arka planı */
+        /* Video Arka Plan */
         .video-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Videoyu tam ekran yapar */
             z-index: -1; /* Video arka planda olacak */
         }
 
-        /* Profil resmi */
+        /* Profil Container */
+        .profile-container {
+            text-align: center;
+            color: white;
+            z-index: 1; /* Profilin ön planda olmasını sağlar */
+        }
+
+        /* Profil Resmi */
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%; /* Yuvarlak profil resmi */
             border: 3px solid black; /* İnce siyah çerçeve */
-            object-fit: cover; /* Resmin boyutunu düzgün şekilde keser */
+            object-fit: cover;
             margin-bottom: 15px;
         }
 
-        /* Profil kısmı */
-        .profile-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 1; /* Profil kısmı ön planda */
-        }
-
-        /* Kullanıcı adı */
+        /* Kullanıcı Adı */
         .username {
             font-size: 28px;
             font-weight: bold;
             margin-top: 10px;
         }
 
-        /* Sosyal medya ikonları */
+        /* Sosyal Medya İkonları */
         .social-icons {
             margin-top: 20px;
         }
@@ -70,8 +71,8 @@
 </head>
 <body>
     <!-- Video -->
-    <video class="video-bg" autoplay loop playsinline>
-        <source src="/storage/emulated/0/Download/audi s8.mp4" type="video/mp4">
+    <video class="video-bg" autoplay loop playsinline muted="false">
+        <source src="/storage/emulated/0/Download/audi%20s8.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -87,22 +88,22 @@
         <div class="social-icons">
             <!-- Instagram -->
             <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
-                <img src="/storage/emulated/0/Download/instagram icon.png" alt="Instagram">
+                <img src="/storage/emulated/0/Download/instagram%20icon.png" alt="Instagram">
             </a>
 
             <!-- Steam -->
             <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
-                <img src="/storage/emulated/0/Download/steam icon.png" alt="Steam">
+                <img src="/storage/emulated/0/Download/steam%20icon.png" alt="Steam">
             </a>
 
             <!-- Spotify -->
             <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=WK-s7ZC4TreY4UeMQrFm0g" target="_blank">
-                <img src="/storage/emulated/0/Download/spotify icon.png" alt="Spotify">
+                <img src="/storage/emulated/0/Download/spotify%20icon.png" alt="Spotify">
             </a>
 
             <!-- GitHub -->
             <a href="https://github.com/mmetem55" target="_blank">
-                <img src="/storage/emulated/0/Download/github icon.png" alt="GitHub">
+                <img src="/storage/emulated/0/Download/github%20icon.png" alt="GitHub">
             </a>
         </div>
     </div>
