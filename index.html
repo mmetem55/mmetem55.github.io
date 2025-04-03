@@ -14,11 +14,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: black; /* Arka planı siyah tutuyoruz */
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
       overflow: hidden;
+      background-color: transparent; /* Arka plan saydam olacak, video görünecek */
     }
 
     /* Arka plan videosu */
@@ -61,44 +61,44 @@
       margin: 0 15px;
       cursor: pointer;
     }
+
+    /* Konumlandırma */
+    .container {
+      text-align: center;
+      z-index: 1; /* Videonun önünde kalmasını sağlıyoruz */
+    }
   </style>
 </head>
 <body>
-  <!-- Video arka planı -->
+  <!-- Video arka planı (Ses açık ve sürekli oynuyor) -->
   <video id="myVideo" autoplay loop>
     <source src="audi_s8.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Profil resmi -->
-  <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
+  <!-- İçerik Konteyneri -->
+  <div class="container">
+    <!-- Profil resmi -->
+    <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
 
-  <!-- Kullanıcı adı -->
-  <div class="username">mmetem</div>
+    <!-- Kullanıcı adı -->
+    <div class="username">mmetem</div>
 
-  <!-- Link ikonu kısmı -->
-  <div class="icons">
-    <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
-      <img src="steam_icon.png" alt="Steam">
-    </a>
-    <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank">
-      <img src="spotify_icon.png" alt="Spotify">
-    </a>
-    <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
-      <img src="instagram_icon.png" alt="Instagram">
-    </a>
-    <a href="https://github.com/mmetem55" target="_blank">
-      <img src="github_icon.png" alt="Github">
-    </a>
+    <!-- Link ikonu kısmı -->
+    <div class="icons">
+      <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
+        <img src="steam_icon.png" alt="Steam">
+      </a>
+      <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank">
+        <img src="spotify_icon.png" alt="Spotify">
+      </a>
+      <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
+        <img src="instagram_icon.png" alt="Instagram">
+      </a>
+      <a href="https://github.com/mmetem55" target="_blank">
+        <img src="github_icon.png" alt="GitHub">
+      </a>
+    </div>
   </div>
-
-  <!-- JavaScript kodu -->
-  <script>
-    // Sayfa yüklendiğinde video sesini açma
-    window.onload = function() {
-      var video = document.getElementById('myVideo');
-      video.muted = false; // Video sesini açıyoruz
-    };
-  </script>
 </body>
 </html>
