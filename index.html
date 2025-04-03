@@ -1,113 +1,37 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en" >
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koyun ve Kurt Oyunu</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            overflow: hidden;
-        }
-        canvas {
-            background-color: lightgreen;
-            display: block;
-            margin: auto;
-        }
-        /* Mobil tuş için stil */
-        .mobile-button {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ff5722;
-            color: white;
-            padding: 10px 20px;
-            font-size: 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        /* Emoji tuşu */
-        .mobile-button span {
-            font-size: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Kediyi Sev</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
 </head>
+
 <body>
-    <canvas id="gameCanvas" width="800" height="300"></canvas>
-    <button class="mobile-button" onclick="jump()"><span>🐑</span> Zıpla</button> <!-- Zıplama tuşu için koyun emoji -->
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
 
-        let sheep = { x: 50, y: 250, width: 30, height: 30, dy: 0, gravity: 0.5, jumpPower: -10 }; // Koyun
-        let wolf = { x: 800, y: 250, width: 40, height: 40 }; // Kurt
-        let isJumping = false;
-        let gameRunning = true;
+  	<div id="world"/>
 
-        function update() {
-            if (!gameRunning) return;
+<div id="credits">
+  <p>Minik bir CSS-JS oyunu</p>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/OrbitControls.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/Cat.js'></script>
 
-            // Koyunun hareketi
-            sheep.y += sheep.dy;
-            sheep.dy += sheep.gravity;
+  
 
-            if (sheep.y >= 250) {
-                sheep.y = 250;
-                isJumping = false;
-            }
+    <script  src="js/index.js"></script>
 
-            // Kurtun hareketi
-            wolf.x -= 5;
-            if (wolf.x + wolf.width < 0) {
-                wolf.x = 800;
-            }
 
-            // Koyun ve kurt çarpışması
-            if (
-                sheep.x < wolf.x + wolf.width &&
-                sheep.x + sheep.width > wolf.x &&
-                sheep.y < wolf.y + wolf.height &&
-                sheep.y + sheep.height > wolf.y
-            ) {
-                gameRunning = false;
-                alert("Oyun Bitti! Koyun kurtlara yakalandı!");
-            }
-        }
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "white";
-            ctx.fillRect(sheep.x, sheep.y, sheep.width, sheep.height); // Koyun
-            ctx.fillStyle = "gray";
-            ctx.fillRect(wolf.x, wolf.y, wolf.width, wolf.height); // Kurt
-        }
 
-        function gameLoop() {
-            update();
-            draw();
-            requestAnimationFrame(gameLoop);
-        }
-
-        // Zıplama fonksiyonu
-        function jump() {
-            if (!isJumping) {
-                sheep.dy = sheep.jumpPower;
-                isJumping = true;
-            }
-        }
-
-        // Mobil cihazlar için zıplama tuşu
-        document.addEventListener("keydown", function (event) {
-            if (event.code === "Space" && !isJumping) {
-                jump();
-            }
-        });
-
-        gameLoop();
-    </script>
 </body>
+
 </html>
