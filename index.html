@@ -1,109 +1,104 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Page</title>
-  <style>
-    /* Genel sayfa düzeni */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: transparent;
-      overflow: hidden; /* Kaymayı engelleme */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sayfası</title>
+    <style>
+        /* Sayfanın genel stil ayarları */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
 
-    /* Video stil ayarları */
-    video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Video ekranı tamamen kaplasın */
-      z-index: -1; /* Video, içeriklerin arkasında olsun */
-      autoplay: true;
-      loop: true;
-      muted: false; /* Videonun sesi açık olsun */
-    }
+        /* Video stili */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            background-color: black; /* Siyah arka plan */
+        }
 
-    /* Profil resminin düzeni */
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 5px solid black;
-      object-fit: cover;
-    }
+        /* Profil resmi yuvarlak ve çerçeveli */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid black; /* İnce siyah çerçeve */
+            margin-bottom: 20px;
+        }
 
-    /* Kullanıcı adı stil ayarı */
-    .username {
-      color: red;
-      font-size: 2rem;
-      font-weight: bold; /* Daha kalın yapalım */
-      margin-top: 20px;
-    }
+        /* Kullanıcı adı stili */
+        .username {
+            color: red;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-    /* İkonların düzeni */
-    .icons {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center; /* İkonları yatayda ortalar */
-    }
+        /* İkonlar için stil */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    .icons img {
-      width: 40px;
-      height: 40px;
-      margin: 0 8px; /* İkonlar arasındaki boşluğu düzenledik */
-      cursor: pointer;
-    }
+        .social-links img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
 
-  </style>
+        /* Sayfanın ortalanması için konteyner */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-  <!-- Video arka planda -->
-  <video autoplay loop id="background-video" controls>
-    <source src="audi_s8.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <!-- Arka planda video -->
+    <video autoplay loop>
+        <source src="audi_s8.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+    </video>
 
-  <!-- Profil resmi ve içerik -->
-  <div class="content">
-    <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
-    <div class="username">mmetem</div>
+    <!-- İçerik -->
+    <div class="container">
+        <!-- Profil resmi -->
+        <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
 
-    <!-- Link ikonları -->
-    <div class="icons">
-      <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
-        <img src="steam_icon.png" alt="Steam">
-      </a>
-      <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank">
-        <img src="spotify_icon.png" alt="Spotify">
-      </a>
-      <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
-        <img src="instagram_icon.png" alt="Instagram">
-      </a>
-      <a href="https://github.com/mmetem55" target="_blank">
-        <img src="github_icon.png" alt="Github">
-      </a>
+        <!-- Kullanıcı adı -->
+        <div class="username">mmetem</div>
+
+        <!-- Sosyal medya ikonları -->
+        <div class="social-links">
+            <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
+                <img src="steam_icon.png" alt="Steam">
+            </a>
+            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank">
+                <img src="spotify_icon.png" alt="Spotify">
+            </a>
+            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
+                <img src="instagram_icon.png" alt="Instagram">
+            </a>
+            <a href="https://github.com/mmetem55" target="_blank">
+                <img src="github_icon.png" alt="Github">
+            </a>
+        </div>
     </div>
-  </div>
-
-  <script>
-    // Videonun sesini açık yapmak için video elementini alıyoruz
-    const video = document.getElementById('background-video');
-    video.volume = 1.0; // Videonun sesini açıyoruz
-    video.play(); // Videonun başlamasını sağlıyoruz
-  </script>
 
 </body>
 </html>
