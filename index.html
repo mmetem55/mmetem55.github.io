@@ -15,38 +15,39 @@
 
         /* Video stili */
         video {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            background-color: black; /* Siyah arka plan */
         }
 
-        /* Profil resmi yuvarlak ve çerçeveli */
+        /* Profil resmi yuvarlak ve düzgün */
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid black; /* İnce siyah çerçeve */
+            border: 5px solid black; /* İnce siyah çerçeve */
+            object-fit: cover;
             margin-bottom: 20px;
         }
 
         /* Kullanıcı adı stili */
         .username {
             color: red;
-            font-size: 30px;
+            font-size: 32px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        /* İkonlar için stil */
+        /* Link ikonları için stil */
         .social-links {
             display: flex;
             justify-content: center;
             gap: 20px;
+            margin-top: 20px;
         }
 
         .social-links img {
@@ -63,14 +64,15 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
+            color: white;
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Arka planda video -->
-    <video autoplay loop>
+    <!-- Video arka planda oynayacak -->
+    <video autoplay loop muted="false">
         <source src="audi_s8.mp4" type="video/mp4">
         Tarayıcınız video etiketini desteklemiyor.
     </video>
