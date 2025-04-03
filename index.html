@@ -3,58 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Müzik Çalar</title>
+    <title>mmetem | Linkler</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             text-align: center;
-            padding: 20px;
-        }
-        #musicButton {
-            padding: 10px 20px;
-            font-size: 20px;
-            background-color: #4CAF50;
             color: white;
-            border: none;
-            cursor: pointer;
         }
-        #musicButton:hover {
-            background-color: #45a049;
+        body {
+            background: black;
+            font-family: Arial, sans-serif;
         }
-        footer {
-            font-size: 12px;
-            color: gray;
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .container {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
             margin-top: 20px;
+        }
+        .links a {
+            width: 50px;
+            height: 50px;
+        }
+        .links img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .links img:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
 <body>
-    <h1>Web Sitesi - Müzik Çalar</h1>
-    <button id="musicButton" onclick="toggleMusic()">Bassana hacı</button>
 
-    <footer>
-        by mmetem
-    </footer>
+    <!-- Arka Plan Videosu -->
+    <video class="video-bg" autoplay loop controls>
+        <source src="audi_s8.mp4" type="video/mp4">
+    </video>
 
-    <audio id="music" preload="auto" style="display:none;">
-        <source src="https://github.com/KullanıcıAdın/username.github.io/raw/main/rahat.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="container">
+        <!-- Profil Resmi -->
+        <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
+        <h1>@mmetem</h1>
 
-    <script>
-        let music = document.getElementById("music");
-        let button = document.getElementById("musicButton");
+        <!-- Linkler -->
+        <div class="links">
+            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
+                <img src="instagram_icon.png" alt="Instagram">
+            </a>
+            <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
+                <img src="steam_icon.png" alt="Steam">
+            </a>
+            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=WK-s7ZC4TreY4UeMQrFm0g" target="_blank">
+                <img src="spotify_icon.png" alt="Spotify">
+            </a>
+            <a href="https://github.com/mmetem55" target="_blank">
+                <img src="github_icon.png" alt="GitHub">
+            </a>
+        </div>
+    </div>
 
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                button.textContent = "Müziği durdurmak için bas hacı";
-            } else {
-                music.pause();
-                music.currentTime = 0;
-                button.textContent = "Bassana hacı";
-            }
-        }
-    </script>
 </body>
 </html>
