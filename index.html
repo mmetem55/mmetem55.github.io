@@ -32,7 +32,7 @@
       z-index: -1; /* Video, içeriklerin arkasında olsun */
       autoplay: true;
       loop: true;
-      muted: false; /* Sesin açık olmasını sağlıyor */
+      muted: false; /* Videonun sesi açık olsun */
     }
 
     /* Profil resminin düzeni */
@@ -71,7 +71,7 @@
 <body>
 
   <!-- Video arka planda -->
-  <video autoplay loop id="background-video">
+  <video autoplay loop id="background-video" controls>
     <source src="audi_s8.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -99,9 +99,10 @@
   </div>
 
   <script>
-    // Video sesini açma komutunu ekleyelim
+    // Videonun sesini açık yapmak için video elementini alıyoruz
     const video = document.getElementById('background-video');
-    video.volume = 1.0; // Ses seviyesi tamamen açık olacak
+    video.volume = 1.0; // Videonun sesini açıyoruz
+    video.play(); // Videonun başlamasını sağlıyoruz
   </script>
 
 </body>
