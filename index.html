@@ -1,8 +1,9 @@
-<!DOCTYPE html><html lang="tr">
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinozor Oyunu</title>
+    <title>Koyun ve Kurt Oyunu</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,71 +12,102 @@
             overflow: hidden;
         }
         canvas {
-            background-color: lightgray;
+            background-color: lightgreen;
             display: block;
             margin: auto;
+        }
+        /* Mobil tuş için stil */
+        .mobile-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Emoji tuşu */
+        .mobile-button span {
+            font-size: 30px;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="300"></canvas>
+    <button class="mobile-button" onclick="jump()"><span>🐑</span></button> <!-- Zıplama tuşu için koyun emoji -->
     <script>
         const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");let dino = { x: 50, y: 250, width: 30, height: 30, dy: 0, gravity: 0.5, jumpPower: -10 };
-    let obstacle = { x: 800, y: 250, width: 20, height: 30 };
-    let isJumping = false;
-    let gameRunning = true;
+        const ctx = canvas.getContext("2d");
 
-    function update() {
-        if (!gameRunning) return;
+        let sheep = { x: 50, y: 250, width: 30, height: 30, dy: 0, gravity: 0.5, jumpPower: -10 }; // Koyun
+        let wolf = { x: 800, y: 250, width: 40, height: 40 }; // Kurt
+        let isJumping = false;
+        let gameRunning = true;
 
-        dino.y += dino.dy;
-        dino.dy += dino.gravity;
+        function update() {
+            if (!gameRunning) return;
 
-        if (dino.y >= 250) {
-            dino.y = 250;
-            isJumping = false;
+            // Koyunun hareketi
+            sheep.y += sheep.dy;
+            sheep.dy += sheep.gravity;
+
+            if (sheep.y >= 250) {
+                sheep.y = 250;
+                isJumping = false;
+            }
+
+            // Kurtun hareketi
+            wolf.x -= 5;
+            if (wolf.x + wolf.width < 0) {
+                wolf.x = 800;
+            }
+
+            // Koyun ve kurt çarpışması
+            if (
+                sheep.x < wolf.x + wolf.width &&
+                sheep.x + sheep.width > wolf.x &&
+                sheep.y < wolf.y + wolf.height &&
+                sheep.y + sheep.height > wolf.y
+            ) {
+                gameRunning = false;
+                alert("Oyun Bitti! Koyun kurtlara yakalandı!");
+            }
         }
 
-        obstacle.x -= 5;
-        if (obstacle.x + obstacle.width < 0) {
-            obstacle.x = 800;
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.fillRect(sheep.x, sheep.y, sheep.width, sheep.height); // Koyun
+            ctx.fillStyle = "gray";
+            ctx.fillRect(wolf.x, wolf.y, wolf.width, wolf.height); // Kurt
         }
 
-        if (
-            dino.x < obstacle.x + obstacle.width &&
-            dino.x + dino.width > obstacle.x &&
-            dino.y < obstacle.y + obstacle.height &&
-            dino.y + dino.height > obstacle.y
-        ) {
-            gameRunning = false;
-            alert("Oyun Bitti!");
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
         }
-    }
 
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "black";
-        ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
-        ctx.fillStyle = "red";
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-    }
-
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    document.addEventListener("keydown", function (event) {
-        if (event.code === "Space" && !isJumping) {
-            dino.dy = dino.jumpPower;
-            isJumping = true;
+        // Zıplama fonksiyonu
+        function jump() {
+            if (!isJumping) {
+                sheep.dy = sheep.jumpPower;
+                isJumping = true;
+            }
         }
-    });
 
-    gameLoop();
-</script>
+        // Mobil cihazlar için zıplama tuşu
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space" && !isJumping) {
+                jump();
+            }
+        });
 
+        gameLoop();
+    </script>
 </body>
 </html>
