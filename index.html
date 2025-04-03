@@ -77,20 +77,6 @@
     Tarayıcınız video etiketini desteklemiyor.
 </video>
 
-<audio autoplay muted id="audio" loop>
-    <source src="audi s8.mp3" type="audio/mp3">
-    Tarayıcınız audio etiketini desteklemiyor.
-</audio>
-
-<script>
-    // Sayfa yüklendikten sonra video sesini kapatıp MP3 sesini açmak için:
-    window.onload = function() {
-        var video = document.getElementById("background-video");
-        var audio = document.getElementById("audio");
-        audio.muted = false;  // MP3 sesini açıyoruz
-        video.muted = true;  // Video sesini kapatıyoruz
-    };
-</script>
     <!-- İçerik -->
     <div class="container">
         <!-- Profil resmi -->
