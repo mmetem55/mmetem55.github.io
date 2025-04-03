@@ -29,17 +29,27 @@
             position: relative;
             top: 50%;
             transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         .profile-img {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 3px solid black; /* Profil resmi çerçevesi siyah */
             margin-bottom: 15px;
         }
         h1 {
             font-size: 24px;
             margin-bottom: 15px;
+            margin-top: 10px;
+            color: red; /* Kullanıcı adı kırmızı */
+            border: 2px solid black; /* Kullanıcı adı çerçevesi siyah */
+            padding: 5px;
+            display: inline-block;
         }
         .links {
             display: flex;
@@ -64,13 +74,14 @@
 <body>
 
     <!-- Arka Plan Videosu -->
-    <video class="video-bg" autoplay loop controls>
+    <video class="video-bg" autoplay loop muted playsinline>
         <source src="audi_s8.mp4" type="video/mp4">
     </video>
 
     <div class="container">
         <!-- Profil Resmi -->
         <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
+        <!-- Kullanıcı Adı -->
         <h1>@mmetem</h1>
 
         <!-- Linkler -->
