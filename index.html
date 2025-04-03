@@ -48,6 +48,7 @@
     .username {
       color: red;
       font-size: 2rem;
+      font-weight: bold; /* Daha kalın yapalım */
       margin-top: 20px;
     }
 
@@ -70,7 +71,7 @@
 <body>
 
   <!-- Video arka planda -->
-  <video autoplay loop muted="false">
+  <video autoplay loop id="background-video">
     <source src="audi_s8.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -96,6 +97,12 @@
       </a>
     </div>
   </div>
+
+  <script>
+    // Video sesini açma komutunu ekleyelim
+    const video = document.getElementById('background-video');
+    video.volume = 1.0; // Ses seviyesi tamamen açık olacak
+  </script>
 
 </body>
 </html>
