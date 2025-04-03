@@ -1,27 +1,120 @@
-<html>
+<!DOCTYPE html><html lang="tr">
 <head>
-<title></title>
-<script type="text/javascript">
- 
- uretilen= Math.floor(Math.random()*100)+1;
- 
-while(1)
-{
-  sayi= prompt('Bir sayı giriniz:');
-   if (sayi>uretilen)
-   alert('Büyük sayı girdiniz');
-
-   else if (sayi<uretilen)
-   alert('Küçük sayı girdiniz');
-
-   else if (sayi==uretilen){
-  alert('Tebrikler bildiniz'); break;
-}
-
-}
- 
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>mmetem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+        .overlay p {
+            color: red;
+            font-size: 24px;
+            font-style: italic;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            display: none;
+        }
+        .profile-container {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+        .username {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 15px;
+        }
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .icons a img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
+    <div class="overlay" onclick="startSite()">
+        <p>Devam etmek için tıkla</p>
+    </div><video class="background-video" id="bgVideo" loop>
+    <source src="audi_s8.mp4" type="video/mp4">
+</video>
+
+<div class="container" id="content">
+    <div class="profile-container">
+        <img src="behzatc.jpeg" alt="Profil Resmi">
+    </div>
+    <div class="username">mmetem</div>
+    <div class="icons">
+        <a href="https://steamcommunity.com/id/mmetem/" target="_blank"><img src="steam_icon.png" alt="Steam"></a>
+        <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank"><img src="spotify_icon.png" alt="Spotify"></a>
+        <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank"><img src="instagram_icon.png" alt="Instagram"></a>
+        <a href="https://github.com/mmetem55" target="_blank"><img src="github_icon.png" alt="GitHub"></a>
+    </div>
+</div>
+
+<script>
+    function startSite() {
+        document.querySelector('.overlay').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        let video = document.getElementById('bgVideo');
+        video.muted = false;
+        video.play();
+    }
+</script>
+
 </body>
 </html>
