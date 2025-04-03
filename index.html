@@ -2,10 +2,10 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Profil Sayfası</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
   <style>
-    /* Sayfa genel stili */
+    /* Genel sayfa düzeni */
     body, html {
       margin: 0;
       padding: 0;
@@ -17,74 +17,67 @@
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      overflow: hidden;
-      background-color: transparent; /* Arka plan saydam olacak, video görünecek */
+      background-color: transparent;
+      overflow: hidden; /* Kaymayı engelleme */
     }
 
-    /* Arka plan videosu */
-    #myVideo {
+    /* Video stil ayarları */
+    video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Video tam ekran olacak şekilde yayılır */
-      z-index: -1; /* Videonun diğer öğelerden geride kalmasını sağlıyoruz */
+      object-fit: cover; /* Video ekranı tamamen kaplasın */
+      z-index: -1; /* Video, içeriklerin arkasında olsun */
+      autoplay: true;
+      loop: true;
+      muted: false; /* Sesin açık olmasını sağlıyor */
     }
 
-    /* Profil resmi yuvarlak, siyah ince çerçeve */
+    /* Profil resminin düzeni */
     .profile-img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      border: 3px solid black; /* İnce siyah çerçeve */
+      border: 5px solid black;
       object-fit: cover;
     }
 
-    /* Kullanıcı adı stili */
+    /* Kullanıcı adı stil ayarı */
     .username {
       color: red;
-      font-size: 32px;
-      margin-top: 10px;
+      font-size: 2rem;
+      margin-top: 20px;
     }
 
-    /* İkonlar kısmı */
+    /* İkonların düzeni */
     .icons {
-      display: flex;
-      justify-content: center;
       margin-top: 20px;
     }
 
     .icons img {
       width: 40px;
       height: 40px;
-      margin: 0 15px;
+      margin: 0 10px;
       cursor: pointer;
-    }
-
-    /* Konumlandırma */
-    .container {
-      text-align: center;
-      z-index: 1; /* Videonun önünde kalmasını sağlıyoruz */
     }
   </style>
 </head>
 <body>
-  <!-- Video arka planı (Ses açık ve sürekli oynuyor) -->
-  <video id="myVideo" autoplay loop muted="false">
+
+  <!-- Video arka planda -->
+  <video autoplay loop muted="false">
     <source src="audi_s8.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- İçerik Konteyneri -->
-  <div class="container">
-    <!-- Profil resmi -->
+  <!-- Profil resmi ve içerik -->
+  <div class="content">
     <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
-
-    <!-- Kullanıcı adı -->
     <div class="username">mmetem</div>
 
-    <!-- Link ikonu kısmı -->
+    <!-- Link ikonları -->
     <div class="icons">
       <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
         <img src="steam_icon.png" alt="Steam">
@@ -96,9 +89,10 @@
         <img src="instagram_icon.png" alt="Instagram">
       </a>
       <a href="https://github.com/mmetem55" target="_blank">
-        <img src="github_icon.png" alt="GitHub">
+        <img src="github_icon.png" alt="Github">
       </a>
     </div>
   </div>
+
 </body>
 </html>
