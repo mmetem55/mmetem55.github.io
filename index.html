@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Video Arka Plan</title>
     <style>
         body {
@@ -38,53 +38,42 @@
             right: 0;
             bottom: 0;
             background-color: rgba(0, 0, 0, 0.7); /* Saydam ve bulanık arka plan */
-            color: white;
+            color: red;
             font-size: 30px;
             font-weight: bold;
-            font-style: italic; /* Italik yap */
+            font-style: italic;
             cursor: pointer;
-            z-index: 1; /* Ekranı ön planda tutmak için */
+            z-index: 2; /* Ekranı ön planda tut */
+            backdrop-filter: blur(10px); /* Daha belirgin bulanıklık */
         }
 
-        .overlay span {
-            color: red; /* Kırmızı renk */
-        }
-
-        /* Kullanıcı adı, profil resmi ve ikonların düzeni */
+        /* İçerik düzeni */
         .content {
             text-align: center;
-            position: absolute;
-            top: 30%; /* Daha yukarı yerleştir */
-            left: 50%;
-            transform: translateX(-50%);
+            z-index: 1;
             color: white;
-            z-index: 2;
-            opacity: 0.6; /* Saydam yaparak zor görünmesini sağla */
+            filter: blur(8px); /* İlk başta bulanık */
+            transition: filter 1s ease; /* Geçiş efekti */
         }
 
-        /* Profil resminin yuvarlak ve çerçeveli görünmesi */
-        .profile-img {
-            border-radius: 50%;
-            border: 5px solid black;
+        .content img {
             width: 150px;
             height: 150px;
-            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid black;
+            margin-bottom: 20px;
         }
 
-        /* Kullanıcı adı stilini ayarlama */
-        .username {
-            font-size: 32px;
-            font-weight: bold;
+        .content h1 {
             color: red;
-            margin-top: 20px; /* Kullanıcı adıyla profil resmi arasına mesafe */
+            font-size: 30px;
+            font-weight: bold;
         }
 
-        /* İkonları düzenlemek ve yan yana dizmek */
         .icons {
-            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 15px; /* İkonlar arasında boşluk */
+            gap: 15px;
         }
 
         .icons img {
@@ -92,52 +81,47 @@
             height: 40px;
             cursor: pointer;
         }
+
+        /* Perde kalkınca bulanıklık kaybolacak */
+        .content.show {
+            filter: blur(0);
+        }
     </style>
 </head>
 <body>
-
-    <!-- Video Arka Plan -->
-    <video id="background-video" autoplay muted loop>
-        <source src="audi_s8.mp4" type="video/mp4">
-        Tarayıcınız video oynatmayı desteklemiyor.
-    </video>
-
-    <!-- Perde Ekranı -->
-    <div class="overlay" onclick="removeOverlay()">
-        <span>Devam Etmek İçin Tıkla</span>
+    <!-- Perde ekranı -->
+    <div class="overlay" onclick="showContent()">
+        Devam etmek için tıkla
     </div>
 
-    <!-- Ana içerik -->
-    <div class="content">
-        <!-- Profil Resmi -->
-        <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
-        <div class="username">mmetem</div>
+    <!-- Video -->
+    <video id="background-video" autoplay loop muted>
+        <source src="audi_s8.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-        <!-- İkonlar -->
+    <!-- İçerik -->
+    <div class="content" id="content">
+        <img src="behzatc.jpeg" alt="Profil Resmi">
+        <h1>mmetem</h1>
         <div class="icons">
-            <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
-                <img src="steam_icon.png" alt="Steam">
-            </a>
-            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank">
-                <img src="spotify_icon.png" alt="Spotify">
-            </a>
-            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank">
-                <img src="instagram_icon.png" alt="Instagram">
-            </a>
-            <a href="https://github.com/mmetem55" target="_blank">
-                <img src="github_icon.png" alt="Github">
-            </a>
+            <a href="https://steamcommunity.com/id/mmetem/"><img src="steam_icon.png" alt="Steam"></a>
+            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw"><img src="spotify_icon.png" alt="Spotify"></a>
+            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm"><img src="instagram_icon.png" alt="Instagram"></a>
+            <a href="https://github.com/mmetem55"><img src="github_icon.png" alt="Github"></a>
         </div>
     </div>
 
     <script>
-        // Perdeyi kaldırmak için fonksiyon
-        function removeOverlay() {
-            document.querySelector('.overlay').style.display = 'none'; // Perdeyi gizle
-            document.querySelector('video').muted = false; // Videoyu sesli yap
-            document.querySelector('video').play(); // Videoyu oynat
+        function showContent() {
+            document.querySelector('.overlay').style.display = 'none';
+            document.getElementById('content').classList.add('show');
+            
+            // Videoyu başlat ve sesi aç
+            var video = document.getElementById('background-video');
+            video.muted = false;
+            video.play();
         }
     </script>
-
 </body>
 </html>
