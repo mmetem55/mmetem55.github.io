@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Sayfası</title>
+    <title>Video Arka Plan</title>
     <style>
-        /* Sayfanın genel stil ayarları */
         body {
             margin: 0;
             padding: 0;
+            height: 100%;
             overflow: hidden;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Video stili */
+        /* Video düzeni */
         video {
             position: absolute;
             top: 0;
@@ -24,69 +27,85 @@
             z-index: -1;
         }
 
-        /* Profil resmi yuvarlak ve düzgün */
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid black; /* İnce siyah çerçeve */
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        /* Kullanıcı adı stili */
-        .username {
-            color: red;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* Link ikonları için stil */
-        .social-links {
+        /* Perde ekranı */
+        .overlay {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Saydam ve bulanık arka plan */
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1; /* Ekranı ön planda tutmak için */
+        }
+
+        /* Kullanıcı adı ve profil resminin düzeni */
+        .content {
+            text-align: center;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            z-index: 2;
+        }
+
+        /* Profil resminin yuvarlak ve çerçeveli görünmesi */
+        .profile-img {
+            border-radius: 50%;
+            border: 5px solid black;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Kullanıcı adı stilini ayarlama */
+        .username {
+            font-size: 32px;
+            font-weight: bold;
+            color: red;
+        }
+
+        /* İkonları düzenlemek */
+        .icons {
             margin-top: 20px;
         }
 
-        .social-links img {
+        .icons img {
             width: 40px;
             height: 40px;
+            margin: 10px;
             cursor: pointer;
         }
-
-        /* Sayfanın ortalanması için konteyner */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: white;
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- Video arka planda oynayacak -->
-    <video autoplay loop muted id="background-video">
-    <source src="audi_s8.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-</video>
+    <!-- Video Arka Plan -->
+    <video id="background-video" autoplay muted loop>
+        <source src="audi_s8.mp4" type="video/mp4">
+        Tarayıcınız video oynatmayı desteklemiyor.
+    </video>
 
-    <!-- İçerik -->
-    <div class="container">
-        <!-- Profil resmi -->
+    <!-- Perde Ekranı -->
+    <div class="overlay" onclick="removeOverlay()">
+        Devam Etmek İçin Tıkla
+    </div>
+
+    <!-- Ana içerik -->
+    <div class="content">
+        <!-- Profil Resmi -->
         <img src="behzatc.jpeg" alt="Profil Resmi" class="profile-img">
-
-        <!-- Kullanıcı adı -->
         <div class="username">mmetem</div>
 
-        <!-- Sosyal medya ikonları -->
-        <div class="social-links">
+        <!-- İkonlar -->
+        <div class="icons">
             <a href="https://steamcommunity.com/id/mmetem/" target="_blank">
                 <img src="steam_icon.png" alt="Steam">
             </a>
@@ -101,6 +120,15 @@
             </a>
         </div>
     </div>
+
+    <script>
+        // Perdeyi kaldırmak için fonksiyon
+        function removeOverlay() {
+            document.querySelector('.overlay').style.display = 'none'; // Perdeyi gizle
+            document.querySelector('video').muted = false; // Videoyu sesli yap
+            document.querySelector('video').play(); // Videoyu oynat
+        }
+    </script>
 
 </body>
 </html>
