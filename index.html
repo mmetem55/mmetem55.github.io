@@ -119,6 +119,7 @@
         let video = document.getElementById('bgVideo');
         let music = document.getElementById('bgMusic'); 
         video.muted = true;
+        video.playbackRate = 0.75; // <- Videoyu yavaşlat
         video.play();
         music.volume = 0.6; // Ses düzeyi
         music.play();
