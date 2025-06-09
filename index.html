@@ -116,5 +116,69 @@
     }
 </script>
 
+<!-- ... deneme ... -->
+
+<audio id="bgMusic" loop>
+    <source src="sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mp3">
+    Tarayıcınız ses etiketini desteklemiyor.
+</audio>
+
+<!-- Müzik butonu -->
+<div id="music-control" onclick="toggleMusic()">
+    ▶
+</div>
+
+<script>
+    function startSite() {
+        document.querySelector('.overlay').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        let video = document.getElementById('bgVideo');
+        video.muted = false;
+        video.play();
+    }
+
+    function toggleMusic() {
+        const music = document.getElementById('bgMusic');
+        const control = document.getElementById('music-control');
+
+        if (music.paused) {
+            music.play();
+            control.textContent = "⏸";
+        } else {
+            music.pause();
+            control.textContent = "▶";
+        }
+    }
+</script>
+
+<style>
+    /* ... önceki stiller aynı kalıyor ... */
+
+    #music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 2px solid red;
+        color: white;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 3;
+        transition: background-color 0.3s;
+    }
+
+    #music-control:hover {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+</style>
+
+
 </body>
 </html>
