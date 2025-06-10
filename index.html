@@ -102,33 +102,50 @@
             transition: background 0.3s;
             user-select: none;
         }
-        .music-control:hover {
-            background-color: #111;
-        }
-        .music-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .music-info {
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-            line-height: 1.1;
-        }
-        .music-title {
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .music-song {
-            font-style: italic;
-            color: #ccc;
-        }
-        .music-button {
-            font-size: 18px;
-            margin-left: auto;
-        }
+
+        .music-control {
+    display: flex;  /* Bu olmazsa öğeler yan yana durmaz */
+    align-items: center;
+    gap: 10px;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.1;
+}
+
+.music-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+}
+
+.music-song {
+    font-style: italic;
+    color: #ccc;
+}
+
+.music-buttons {
+    margin-left: auto;  /* Kontrolleri sağa yaslar */
+    display: flex;
+    gap: 10px;
+}
+
+.music-buttons button {
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.music-buttons button:hover {
+    color: #f90;
+}
+
+        
     </style>
 </head>
 <body>
@@ -141,10 +158,19 @@
         Video tarayıcınız tarafından desteklenmiyor.
     </video>
 
-<div class="music-control" title="Müziği Kontrol Et">
-    <div onclick="prevSong()">⏮</div>
-    <div onclick="toggleMusic()" id="musicBtn">⏸</div>
-    <div onclick="nextSong()">⏭</div>
+<div class="music-control">
+    <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" id="musicIcon" />
+    <div class="music-info">
+        <div class="music-title" id="musicTitle">Sansar Salvo</div>
+        <div class="music-song" id="musicSong">Bombalar Hedef Bulur</div>
+    </div>
+    <div class="music-buttons">
+        <button onclick="prevSong()">⏮</button>
+        <button onclick="toggleMusic()" id="musicBtn">⏸</button>
+        <button onclick="nextSong()">⏭</button>
+    </div>
+</div>
+
     
     <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" id="musicIcon" />
     
