@@ -89,51 +89,74 @@
             border-radius: 50%;
         }
 
-        /* Müzik kontrol kutusu */
         .music-control {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            background-color: black;
-            color: white;
-            border-radius: 30px;
-            padding: 8px 15px;
-            gap: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 3;
-            cursor: pointer;
-            transition: background 0.3s;
-            user-select: none;
-        }
-        .music-control:hover {
-            background-color: #111;
-        }
-        .music-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .music-info {
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-            line-height: 1.1;
-        }
-        .music-title {
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .music-song {
-            font-style: italic;
-            color: #ccc;
-        }
-        .music-button {
-            font-size: 18px;
-            margin-left: auto;
-        }
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Butonlar arası boşluk */
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 8px 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 3;
+    cursor: default;
+    user-select: none;
+    transition: background 0.3s;
+}
+
+.music-control:hover {
+    background-color: #111;
+}
+
+.music-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+.music-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.music-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.1;
+    user-select: none;
+}
+
+.music-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+}
+
+.music-song {
+    font-style: italic;
+    color: #ccc;
+}
+
+        
     </style>
 </head>
 <body>
@@ -146,14 +169,17 @@
         Video tarayıcınız tarafından desteklenmiyor.
     </video>
 
-    <div class="music-control" onclick="toggleMusic()" title="Müziği Aç/Kapa">
-        <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" />
-        <div class="music-info">
-            <div class="music-title">Sansar Salvo</div>
-            <div class="music-song">Bombalar Hedef Bulur</div>
-        </div>
-        <div class="music-button" id="musicBtn">⏸</div>
+    <div class="music-control" title="Müziği Kontrol Et">
+    <div class="music-button" id="prevBtn" title="Önceki Şarkı">⏮</div>
+    <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" />
+    <div class="music-info">
+        <div class="music-title">Sansar Salvo</div>
+        <div class="music-song">Bombalar Hedef Bulur</div>
     </div>
+    <div class="music-button" id="musicBtn" title="Oynat/Durdur">⏸</div>
+    <div class="music-button" id="nextBtn" title="Sonraki Şarkı">⏭</div>
+</div>
+
 
     <audio id="bgMusic" loop>
         <source src="sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mpeg" />
@@ -173,35 +199,97 @@
         </div>
     </div>
 
-<script>
+
+
+      <script>
+  const playlist = [
+    {
+        title: "Bombalar Hedef Bulur",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-bombalar-hedef-bulur.mp3",
+        cover: "seremoni-efendisi.png"
+    },
+    {
+        title: "Dum Taka Dum",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-dum-taka-dum.mp3",
+        cover: "dum-taka-dum.png"
+    },
+    {
+        title: "180km",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-180km.mp3",
+        cover: "180km.jpg"
+    },
+    {
+        title: "Ağır Roman",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-ağır-roman.mp3",
+        cover: "ağır-roman.png"
+    },
+    {
+        title: "Ne",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-ne.mp3",
+        cover: "ne.png"
+    }
+];
+
+
+    let currentTrack = 0;
     let isPlaying = true;
 
-    function toggleMusic() {
-        const music = document.getElementById('bgMusic');
-        const btn = document.getElementById('musicBtn');
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicIcon = document.querySelector('.music-icon');
+    const musicTitle = document.querySelector('.music-title');
+    const musicSong = document.querySelector('.music-song');
 
+    function loadTrack(index) {
+        const track = playlist[index];
+        music.src = track.src;
+        musicIcon.src = track.cover;
+        musicTitle.textContent = track.artist;
+        musicSong.textContent = track.title;
+        music.play();
+        isPlaying = true;
+        musicBtn.textContent = '⏸';
+    }
+
+    function toggleMusic() {
         if (isPlaying) {
             music.pause();
-            btn.textContent = '▶︎';
+            musicBtn.textContent = '▶︎';
         } else {
             music.play();
-            btn.textContent = '⏸';
+            musicBtn.textContent = '⏸';
         }
         isPlaying = !isPlaying;
+    }
+
+    function nextSong() {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        loadTrack(currentTrack);
+    }
+
+    function prevSong() {
+        currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+        loadTrack(currentTrack);
     }
 
     function startSite() {
         document.querySelector('.overlay').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        let video = document.getElementById('bgVideo');
-        let music = document.getElementById('bgMusic');
-        video.muted = true;
-        video.play();
+        document.getElementById('bgVideo').play();
+        document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+        document.getElementById('prevBtn').addEventListener('click', prevSong);
+        document.getElementById('nextBtn').addEventListener('click', nextSong);
         music.volume = 1.0;
-        music.play();
-        isPlaying = true;
-        document.getElementById('musicBtn').textContent = '⏸';
+        loadTrack(currentTrack);
     }
+
+    music.addEventListener('ended', nextSong);
 </script>
+ 
 </body>
 </html>
