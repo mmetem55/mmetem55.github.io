@@ -84,11 +84,6 @@
             height: 40px;
         }
 
-        /* GitHub ikonunu yuvarlak yap */
-        .github-icon {
-            border-radius: 50%;
-        }
-
         /* Müzik kontrol kutusu */
         .music-control {
             position: fixed;
@@ -146,26 +141,19 @@
         Video tarayıcınız tarafından desteklenmiyor.
     </video>
 
-<div class="music-control" title="Müziği Kontrol Et">
-    <div onclick="prevSong()">⏮</div>
-    <div onclick="toggleMusic()" id="musicBtn">⏸</div>
-    <div onclick="nextSong()">⏭</div>
-    <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" id="musicIcon" />
-    <div class="music-info">
-        <div class="music-title" id="musicTitle">Sansar Salvo</div>
-        <div class="music-song" id="musicSong">Bombalar Hedef Bulur</div>
-    </div>
-</div>
-
-    
+    <div class="music-control" onclick="toggleMusic()" title="Müziği Aç/Kapa">
+        <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" />
+        <div class="music-info">
+            <div class="music-title">Sansar Salvo</div>
+            <div class="music-song">Bombalar Hedef Bulur</div>
+        </div>
         <div class="music-button" id="musicBtn">⏸</div>
     </div>
 
-  <audio id="bgMusic" loop="false">
-    <source src="" type="audio/mpeg" />
-    Tarayıcınız audio etiketini desteklemiyor.
-</audio>
-
+    <audio id="bgMusic" loop>
+        <source src="sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mpeg" />
+        Tarayıcınız audio etiketini desteklemiyor.
+    </audio>
 
     <div class="container" id="content">
         <div class="profile-container">
@@ -176,97 +164,39 @@
             <a href="https://steamcommunity.com/id/mmetem/" target="_blank"><img src="steam_icon.png" alt="Steam" /></a>
             <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank"><img src="spotify_icon.png" alt="Spotify" /></a>
             <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank"><img src="instagram_icon.png" alt="Instagram" /></a>
-            <a href="https://github.com/mmetem55" target="_blank"><img src="github_icon.png" alt="GitHub" class="github-icon" /></a>
+            <a href="https://github.com/mmetem55" target="_blank"><img src="github_icon.png" alt="GitHub" /></a>
         </div>
     </div>
 
-    <script>
-  const playlist = [
-    {
-        title: "Bombalar Hedef Bulur",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-bombalar-hedef-bulur.mp3",
-        cover: "seremoni-efendisi.png"
-    },
-    {
-        title: "Dum Taka Dum",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-dum-taka-dum.mp3",
-        cover: "dum-taka-dum.png"
-    },
-    {
-        title: "180km",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-180km.mp3",
-        cover: "180km.jpg"
-    },
-    {
-        title: "Ağır Roman",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-ağır-roman.mp3",
-        cover: "ağır-roman.png"
-    },
-    {
-        title: "Ne",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-ne.mp3",
-        cover: "ne.png"
-    }
-];
-
-
-    let currentTrack = 0;
+<script>
     let isPlaying = true;
 
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicIcon = document.querySelector('.music-icon');
-    const musicTitle = document.querySelector('.music-title');
-    const musicSong = document.querySelector('.music-song');
-
-    function loadTrack(index) {
-        const track = playlist[index];
-        music.src = track.src;
-        musicIcon.src = track.cover;
-        musicTitle.textContent = track.artist;
-        musicSong.textContent = track.title;
-        music.play();
-        isPlaying = true;
-        musicBtn.textContent = '⏸';
-    }
-
     function toggleMusic() {
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+
         if (isPlaying) {
             music.pause();
-            musicBtn.textContent = '▶︎';
+            btn.textContent = '▶︎';
         } else {
             music.play();
-            musicBtn.textContent = '⏸';
+            btn.textContent = '⏸';
         }
         isPlaying = !isPlaying;
-    }
-
-    function nextSong() {
-        currentTrack = (currentTrack + 1) % playlist.length;
-        loadTrack(currentTrack);
-    }
-
-    function prevSong() {
-        currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-        loadTrack(currentTrack);
     }
 
     function startSite() {
         document.querySelector('.overlay').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        document.getElementById('bgVideo').play();
+        let video = document.getElementById('bgVideo');
+        let music = document.getElementById('bgMusic');
+        video.muted = true;
+        video.play();
         music.volume = 1.0;
-        loadTrack(currentTrack);
+        music.play();
+        isPlaying = true;
+        document.getElementById('musicBtn').textContent = '⏸';
     }
-
-    music.addEventListener('ended', nextSong);
 </script>
-
-
 </body>
 </html>
