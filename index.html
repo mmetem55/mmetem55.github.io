@@ -141,19 +141,21 @@
         Video tarayıcınız tarafından desteklenmiyor.
     </video>
 
-    <div class="music-control" onclick="toggleMusic()" title="Müziği Aç/Kapa">
-        <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" />
-        <div class="music-info">
-            <div class="music-title">Sansar Salvo</div>
-            <div class="music-song">Bombalar Hedef Bulur</div>
-        </div>
-        <div class="music-button" id="musicBtn">⏸</div>
+<div class="music-control" title="Müziği Kontrol Et">
+    <div onclick="prevSong()">⏮</div>
+    <div onclick="toggleMusic()" id="musicBtn">⏸</div>
+    <div onclick="nextSong()">⏭</div>
+    
+    <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" id="musicIcon" />
+    
+    <div class="music-info">
+        <div class="music-title" id="musicTitle">Sansar Salvo</div>
+        <div class="music-song" id="musicSong">Bombalar Hedef Bulur</div>
     </div>
+</div>
 
-    <audio id="bgMusic" loop>
-        <source src="sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mpeg" />
-        Tarayıcınız audio etiketini desteklemiyor.
-    </audio>
+<audio id="bgMusic"></audio>
+
 
     <div class="container" id="content">
         <div class="profile-container">
