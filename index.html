@@ -84,29 +84,19 @@
             height: 40px;
         }
 
-        /* Müzik kontrol kutusu */
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            background-color: black;
-            color: white;
-            border-radius: 30px;
-            padding: 8px 15px;
-            gap: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 3;
-            cursor: pointer;
-            transition: background 0.3s;
-            user-select: none;
-        }
+
 
         .music-control {
-    display: flex;  /* Bu olmazsa öğeler yan yana durmaz */
+    display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Arada boşluk */
+}
+
+.music-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .music-info {
@@ -127,13 +117,14 @@
     color: #ccc;
 }
 
+/* Butonları sağa yasla */
 .music-buttons {
-    margin-left: auto;  /* Kontrolleri sağa yaslar */
+    margin-left: auto; /* Burada sağa yaslıyor */
     display: flex;
     gap: 10px;
 }
 
-.music-buttons button {
+.music-button {
     font-size: 18px;
     background: none;
     border: none;
@@ -141,9 +132,11 @@
     cursor: pointer;
 }
 
-.music-buttons button:hover {
+.music-button:hover {
     color: #f90;
 }
+
+
 
         
     </style>
