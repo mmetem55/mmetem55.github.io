@@ -170,35 +170,92 @@
         </div>
     </div>
 
-<script>
+    <script>
+  const playlist = [
+    {
+        title: "Bombalar Hedef Bulur",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-bombalar-hedef-bulur.mp3",
+        cover: "seremoni-efendisi.png"
+    },
+    {
+        title: "Dum Taka Dum",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-dum-taka-dum.mp3",
+        cover: "dum-taka-dum.png"
+    },
+    {
+        title: "180km",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-180km.mp3",
+        cover: "180km.jpg"
+    },
+    {
+        title: "Ağır Roman",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-ağır-roman.mp3",
+        cover: "ağır-roman.png"
+    },
+    {
+        title: "Ne",
+        artist: "Sansar Salvo",
+        src: "sansar-salvo-ne.mp3",
+        cover: "ne.png"
+    }
+];
+
+
+    let currentTrack = 0;
     let isPlaying = true;
 
-    function toggleMusic() {
-        const music = document.getElementById('bgMusic');
-        const btn = document.getElementById('musicBtn');
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicIcon = document.querySelector('.music-icon');
+    const musicTitle = document.querySelector('.music-title');
+    const musicSong = document.querySelector('.music-song');
 
+    function loadTrack(index) {
+        const track = playlist[index];
+        music.src = track.src;
+        musicIcon.src = track.cover;
+        musicTitle.textContent = track.artist;
+        musicSong.textContent = track.title;
+        music.play();
+        isPlaying = true;
+        musicBtn.textContent = '⏸';
+    }
+
+    function toggleMusic() {
         if (isPlaying) {
             music.pause();
-            btn.textContent = '▶︎';
+            musicBtn.textContent = '▶︎';
         } else {
             music.play();
-            btn.textContent = '⏸';
+            musicBtn.textContent = '⏸';
         }
         isPlaying = !isPlaying;
+    }
+
+    function nextSong() {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        loadTrack(currentTrack);
+    }
+
+    function prevSong() {
+        currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+        loadTrack(currentTrack);
     }
 
     function startSite() {
         document.querySelector('.overlay').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        let video = document.getElementById('bgVideo');
-        let music = document.getElementById('bgMusic');
-        video.muted = true;
-        video.play();
+        document.getElementById('bgVideo').play();
         music.volume = 1.0;
-        music.play();
-        isPlaying = true;
-        document.getElementById('musicBtn').textContent = '⏸';
+        loadTrack(currentTrack);
     }
+
+    music.addEventListener('ended', nextSong);
 </script>
+
 </body>
 </html>
