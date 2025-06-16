@@ -296,6 +296,13 @@
     }
 
     music.addEventListener('ended', nextSong);
+          // Space tuşu ile oynat/duraklat kontrolü
+document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') {
+        e.preventDefault(); // Sayfa kaymasını engeller
+        toggleMusic();
+    }
+});
 </script>
  
 </body>
