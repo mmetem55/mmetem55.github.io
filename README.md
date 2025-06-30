@@ -22,9 +22,3 @@
   Hiçbir framework kullanılmadan hazırlanmıştır, hızlı ve hafif bir yapıdadır.
 
 
-## 👤 Geliştirici
-
-- **İsim**: mmetem 
-- **Web**: [https://www.mmetem.site](https://www.mmetem.site)  
-- **GitHub**: [@kullaniciadi](https://github.com/mmetem55) 
-
