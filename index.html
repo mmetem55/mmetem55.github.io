@@ -4,311 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>mmetem</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-        .background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            z-index: 2;
-        }
-        .overlay p {
-            color: red;
-            font-size: 24px;
-            font-style: italic;
-        }
-        .container {
-            text-align: center;
-            color: white;
-            display: none;
-        }
-        .profile-container {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid black;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-        }
-        .profile-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 1 / 1;
-        }
-        .username {
-            font-size: 28px;
-            font-weight: bold;
-            color: red;
-            margin-bottom: 15px;
-        }
-        .icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .icons a img {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* GitHub ikonunu yuvarlak yap */
-        .github-icon {
-            border-radius: 50%;
-        }
-
-        .music-control {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Butonlar arası boşluk */
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    padding: 8px 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 3;
-    cursor: default;
-    user-select: none;
-    transition: background 0.3s;
-}
-
-.music-control:hover {
-    background-color: #111;
-}
-
-.music-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    border-radius: 50%;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    user-select: none;
-    transition: background-color 0.3s ease;
-}
-
-.music-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.music-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.music-info {
-    display: flex;
-    flex-direction: column;
-    font-size: 12px;
-    line-height: 1.1;
-    user-select: none;
-}
-
-.music-title {
-    font-weight: bold;
-    font-size: 14px;
-    color: white;
-}
-
-.music-song {
-    font-style: italic;
-    color: #ccc;
-}
-
-        
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="overlay" onclick="startSite()">
         <p>Devam etmek için tıkla</p>
     </div>
 
-    <video class="background-video" id="bgVideo" loop muted>
-        <source src="audi-r8-720p.mp4" type="video/mp4" />
+    <video class="background-video" id="bgVideo" loop muted preload="none">
+        <source src="video/audi-r8-720p.mp4" type="video/mp4" />
         Video tarayıcınız tarafından desteklenmiyor.
     </video>
 
     <div class="music-control" title="Müziği Kontrol Et">
-    <div class="music-button" id="prevBtn" title="Önceki Şarkı">⏮</div>
-    <img src="seremoni-efendisi.png" alt="Albüm" class="music-icon" />
-    <div class="music-info">
-        <div class="music-title">Sansar Salvo</div>
-        <div class="music-song">Bombalar Hedef Bulur</div>
+        <div class="music-button" id="prevBtn" title="Önceki Şarkı">⏮</div>
+        <img src="sarki-coverlari/seremoni-efendisi.webp" alt="Albüm" class="music-icon" />
+        <div class="music-info">
+            <div class="music-title">Sansar Salvo</div>
+            <div class="music-song">Bombalar Hedef Bulur</div>
+        </div>
+        <div class="music-button" id="musicBtn" title="Oynat/Durdur">⏸</div>
+        <div class="music-button" id="nextBtn" title="Sonraki Şarkı">⏭</div>
     </div>
-    <div class="music-button" id="musicBtn" title="Oynat/Durdur">⏸</div>
-    <div class="music-button" id="nextBtn" title="Sonraki Şarkı">⏭</div>
-</div>
 
-
-    <audio id="bgMusic" >
-        <source src="sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mpeg" />
+    <audio id="bgMusic" preload="none">
+        <source src="sarkilar/sansar-salvo-bombalar-hedef-bulur.mp3" type="audio/mpeg" />
         Tarayıcınız audio etiketini desteklemiyor.
     </audio>
 
     <div class="container" id="content">
         <div class="profile-container">
-            <img src="mmetem.jpeg" alt="Profil Resmi" />
+            <img src="profil/mmetem.webp" alt="Profil Resmi" loading="lazy" />
         </div>
         <div class="username">mmetem</div>
         <div class="icons">
-            <a href="https://steamcommunity.com/id/mmetem/" target="_blank"><img src="steam_icon.png" alt="Steam" /></a>
-            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank"><img src="spotify_icon.png" alt="Spotify" /></a>
-            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank"><img src="instagram_icon.png" alt="Instagram" /></a>
-            <a href="https://github.com/mmetem55" target="_blank"><img src="github_icon.png" alt="GitHub" class="github-icon" /></a>
+            <a href="https://steamcommunity.com/id/mmetem/" target="_blank"><img src="ikonlar/steam_icon.webp" alt="Steam" loading="lazy" /></a>
+            <a href="https://open.spotify.com/user/ay9wdqkcuxggf0k8q9xkknz8e?si=IJ5ihno9T1GYUs-kdOFoqw" target="_blank"><img src="ikonlar/spotify_icon.webp" alt="Spotify" loading="lazy" /></a>
+            <a href="https://www.instagram.com/mr8_catt?igsh=ajJ0Y3N6Z3V5aHVm" target="_blank"><img src="ikonlar/instagram_icon.webp" alt="Instagram" loading="lazy" /></a>
+            <a href="https://github.com/mmetem55" target="_blank"><img src="ikonlar/github_icon.webp" alt="GitHub" class="github-icon" loading="lazy" /></a>
         </div>
     </div>
 
-
-
-      <script>
-  const playlist = [
-      {
-        title: "Bombalar Hedef Bulur",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-bombalar-hedef-bulur.mp3",
-        cover: "seremoni-efendisi.png"
-    },
-       {
-        title: "Bench Press",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-bench-press.mp3",
-        cover: "bench-press.png"
-    },
-    {
-        title: "34 Dramı x Auditorium",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-34-dramı-x-auditorium.mp3",
-        cover: "34-dramı-x-auditorium.png"
-    },
-    {
-        title: "Dum Taka Dum",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-dum-taka-dum.mp3",
-        cover: "dum-taka-dum.png"
-    },
-    {
-        title: "180km",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-180km.mp3",
-        cover: "180km.jpg"
-    },
-    {
-        title: "Ağır Roman",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-ağır-roman.mp3",
-        cover: "ağır-roman.png"
-    },
-    {
-        title: "Ne",
-        artist: "Sansar Salvo",
-        src: "sansar-salvo-ne.mp3",
-        cover: "ne.png"
-    }
-];
-
-
-    let currentTrack = 0;
-    let isPlaying = true;
-
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicIcon = document.querySelector('.music-icon');
-    const musicTitle = document.querySelector('.music-title');
-    const musicSong = document.querySelector('.music-song');
-
-    function loadTrack(index) {
-        const track = playlist[index];
-        music.src = track.src;
-        musicIcon.src = track.cover;
-        musicTitle.textContent = track.artist;
-        musicSong.textContent = track.title;
-        music.play();
-        isPlaying = true;
-        musicBtn.textContent = '⏸';
-    }
-
-    function toggleMusic() {
-        if (isPlaying) {
-            music.pause();
-            musicBtn.textContent = '▶︎';
-        } else {
-            music.play();
-            musicBtn.textContent = '⏸';
-        }
-        isPlaying = !isPlaying;
-    }
-
-    function nextSong() {
-        currentTrack = (currentTrack + 1) % playlist.length;
-        loadTrack(currentTrack);
-    }
-
-    function prevSong() {
-        currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-        loadTrack(currentTrack);
-    }
-
-    function startSite() {
-        document.querySelector('.overlay').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        document.getElementById('bgVideo').play();
-        document.getElementById('musicBtn').addEventListener('click', toggleMusic);
-        document.getElementById('prevBtn').addEventListener('click', prevSong);
-        document.getElementById('nextBtn').addEventListener('click', nextSong);
-        music.volume = 0.8;
-        loadTrack(currentTrack);
-    }
-
-    music.addEventListener('ended', nextSong);
-          // Space tuşu ile oynat/duraklat kontrolü
-document.addEventListener('keydown', function (e) {
-    if (e.code === 'Space') {
-        e.preventDefault(); // Sayfa kaymasını engeller
-        toggleMusic();
-    }
-});
-</script>
- 
+    <script src="script.js" defer></script>
 </body>
 </html>
