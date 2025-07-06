@@ -3,13 +3,15 @@ const playlist = [
         title: "Bombalar Hedef Bulur",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-bombalar-hedef-bulur.mp3",
-        cover: "sarki-coverlari/seremoni-efendisi.webp"
+        cover: "sarki-coverlari/seremoni-efendisi.webp",
+        link: "https://open.spotify.com/intl-tr/track/5o0nTtYFdFSrXAmw4dS2cI?si=895c9f8480dc4d88"
     },
     {
         title: "Bench Press",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-bench-press.mp3",
-        cover: "sarki-coverlari/bench-press.webp"
+        cover: "sarki-coverlari/bench-press.webp",
+        link: "https://open.spotify.com/intl-tr/track/70thVzLyyitZtPKcI4RAzQ?si=dba5cc0c2b444716"
     },
     {
         title: "34 Dramı x Auditorium",
@@ -21,25 +23,29 @@ const playlist = [
         title: "Dum Taka Dum",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-dum-taka-dum.mp3",
-        cover: "sarki-coverlari/dum-taka-dum.webp"
+        cover: "sarki-coverlari/dum-taka-dum.webp",
+        link: "https://open.spotify.com/intl-tr/track/27kzvdLZ24iFRntK1Sveoo?si=6dedec1900434421"
     },
     {
         title: "180km",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-180km.mp3",
-        cover: "sarki-coverlari/180km.webp"
+        cover: "sarki-coverlari/180km.webp",
+        link: "https://open.spotify.com/intl-tr/track/3zSH3vqxECDQMZdVuRiyG9?si=2d8d2ffb694749f8"
     },
     {
         title: "Ağır Roman",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-ağır-roman.mp3",
-        cover: "sarki-coverlari/ağır-roman.webp"
+        cover: "sarki-coverlari/ağır-roman.webp",
+        link: "https://open.spotify.com/intl-tr/track/4Q6TWuCGjt9qdZfXQyDOqd?si=93dac02657124d14"
     },
     {
         title: "Ne",
         artist: "Sansar Salvo",
         src: "sarkilar/sansar-salvo-ne.mp3",
-        cover: "sarki-coverlari/ne.webp"
+        cover: "sarki-coverlari/ne.webp",
+        link: "https://open.spotify.com/intl-tr/track/2UGtM5MB4yzrmGrqfvmTru?si=57db272239604a0d"
     }
 ];
 
@@ -57,7 +63,11 @@ function loadTrack(index) {
     music.src = track.src;
     musicIcon.src = track.cover;
     musicTitle.textContent = track.artist;
-    musicSong.textContent = track.title;
+    if (track.link) {
+        musicSong.innerHTML = `<a href="${track.link}" target="_blank" style="color: #ccc; text-decoration: none;">${track.title}</a>`;
+    } else {
+        musicSong.textContent = track.title;
+    }
     music.play();
     isPlaying = true;
     musicBtn.textContent = '⏸';
