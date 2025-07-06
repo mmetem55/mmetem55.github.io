@@ -74,6 +74,16 @@ body {
 .icons a img {
     width: 40px;
     height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+.icons a img:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+.icons a img:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease;
 }
 .github-icon {
     border-radius: 50%;
@@ -114,6 +124,11 @@ body {
 }
 .music-button:hover {
     background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.2);
+}
+.music-button:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease;
 }
 .music-icon {
     width: 40px;
@@ -136,3 +151,96 @@ body {
     font-style: italic;
     color: #ccc;
 }
+.volume-control {
+    position: fixed;
+    bottom: 75px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(0,0,0,0.8);
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    width: 180px;
+    user-select: none;
+    z-index: 4;
+}
+
+.volume-icon {
+    font-size: 22px;
+    color: #1db954; /* Spotify yeşili */
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* Slider genel ayar */
+.volume-control input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #555; /* koyu gri */
+    cursor: pointer;
+    transition: background 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Slider track için dolan renk - burası JS ile dinamik ayarlanacak */
+
+/* Thumb genel ayar */
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: -4px; /* ortalamak için */
+    opacity: 0; /* başta görünmez */
+    position: relative;
+    z-index: 2;
+}
+
+/* Firefox */
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+}
+
+/* Hover sırasında thumb görünür */
+.volume-control input[type="range"]:hover::-webkit-slider-thumb {
+    opacity: 1;
+    background: white;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.volume-control input[type="range"]:hover::-moz-range-thumb {
+    opacity: 1;
+    background: white;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+/* Thumb aktifken (fare basılıyken) kırmızı */
+.volume-control input[type="range"]:active::-webkit-slider-thumb {
+    background: red;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.9);
+}
+
+.volume-control input[type="range"]:active::-moz-range-thumb {
+    background: red;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.9);
+}
+
+
+

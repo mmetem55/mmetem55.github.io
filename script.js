@@ -114,3 +114,54 @@ document.addEventListener('keydown', function (e) {
         toggleMusic();
     }
 });
+const volumeSlider = document.getElementById('volumeSlider');
+const volumeIcon = document.getElementById('volumeIcon');
+
+function updateVolumeIcon(vol) {
+    if (vol == 0) {
+        volumeIcon.textContent = "🔇";
+    } else if (vol < 75) {
+        volumeIcon.textContent = "🔉";
+    } else {
+        volumeIcon.textContent = "🔊";
+    }
+}
+
+function updateSliderBackground(vol, isActive = false) {
+    const slider = volumeSlider;
+    const percent = vol;
+
+    // Dolan kısım renkleri
+    // normal hover değilken beyaz
+    // aktif (basılıyken) kırmızı
+    const fillColor = isActive ? "red" : "white";
+
+    // CSS linear-gradient ile dolan kısım belirleniyor
+    slider.style.background = `linear-gradient(to right, ${fillColor} 0%, ${fillColor} ${percent}%, #555 ${percent}%, #555 100%)`;
+}
+
+volumeSlider.addEventListener('input', function() {
+    const vol = parseInt(this.value, 10);
+    music.volume = vol / 100;
+    updateVolumeIcon(vol);
+    updateSliderBackground(vol, false);
+});
+
+// Mouse basılı tutma olayları
+volumeSlider.addEventListener('mousedown', function() {
+    updateSliderBackground(parseInt(this.value, 10), true);
+});
+volumeSlider.addEventListener('mouseup', function() {
+    updateSliderBackground(parseInt(this.value, 10), false);
+});
+
+// Fare slider dışına çıkarsa da aktifliği kaldırmak için:
+volumeSlider.addEventListener('mouseleave', function() {
+    updateSliderBackground(parseInt(this.value, 10), false);
+});
+
+// Başlangıç ayarları
+const initialVol = parseInt(volumeSlider.value, 10);
+music.volume = initialVol / 100;
+updateVolumeIcon(initialVol);
+updateSliderBackground(initialVol, false);
