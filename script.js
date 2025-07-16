@@ -4,7 +4,7 @@ const firebaseConfig = {
     databaseURL: "https://mmetem-site-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "mmetem-site",
     storageBucket: "mmetem-site.firebasestorage.app",
-    messagingSenderId: ""776758318533",
+    messagingSenderId: "776758318533",
     appId: "1:776758318533:web:705e4428be09137348e7ac"
   };
 
