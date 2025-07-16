@@ -1,16 +1,3 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyBxeojTNCiYrye6uLNAAODwCmbSlAwk24o",
-    authDomain: "mmetem-site.firebaseapp.com",
-    databaseURL: "https://mmetem-site-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "mmetem-site",
-    storageBucket: "mmetem-site.firebasestorage.app",
-    messagingSenderId: "776758318533",
-    appId: "1:776758318533:web:705e4428be09137348e7ac"
-  };
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
 const playlist = [
     {
         title: "Bombalar Hedef Bulur",
@@ -178,49 +165,3 @@ const initialVol = parseInt(volumeSlider.value, 10);
 music.volume = initialVol / 100;
 updateVolumeIcon(initialVol);
 updateSliderBackground(initialVol, false);
-
-
-
-let visitorID = localStorage.getItem("visitor_id");
-if (!visitorID) {
-  visitorID = "user-" + Math.random().toString(36).substr(2, 9);
-  localStorage.setItem("visitor_id", visitorID);
-}
-
-let visitCount = parseInt(localStorage.getItem("visit_count")) || 0;
-visitCount++;
-localStorage.setItem("visit_count", visitCount);
-
-const lastVisit = new Date().toISOString();
-localStorage.setItem("last_visit", lastVisit);
-
-const userAgent = navigator.userAgent;
-
-let browserName = "Bilinmiyor";
-if (userAgent.includes("Chrome")) browserName = "Chrome";
-else if (userAgent.includes("Firefox")) browserName = "Firefox";
-else if (userAgent.includes("Safari")) browserName = "Safari";
-else if (userAgent.includes("Edge")) browserName = "Edge";
-
-let os = "Bilinmiyor";
-if (userAgent.includes("Windows")) os = "Windows";
-else if (userAgent.includes("Android")) os = "Android";
-else if (userAgent.includes("iPhone")) os = "iOS";
-else if (userAgent.includes("Mac OS")) os = "Mac OS";
-
-let deviceType = "Masaüstü";
-if (/Mobi|Android/i.test(userAgent)) deviceType = "Mobil";
-
-const deviceData = {
-  id: visitorID,
-  visits: visitCount,
-  lastVisit: lastVisit,
-  browser: browserName,
-  os: os,
-  deviceType: deviceType,
-  screen: screen.width + "x" + screen.height,
-  language: navigator.language,
-  timestamp: new Date().toISOString()
-};
-
-db.ref("visitors/" + visitorID + "_" + Date.now()).set(deviceData);
